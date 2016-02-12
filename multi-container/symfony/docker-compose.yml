@@ -1,10 +1,10 @@
 # Source: https://www.jverdeyen.be/docker/how-php-symfony-coreos-docker/
 
 app:
-    image: yappabe/data
-    volumes:
-        - .:/var/www/app
-        - /vendor
+    #image: yappabe/data
+    image: sfexperiments/app
+    #volumes:
+    #    - .:/var/www
     tty: true
 
 nginx:
@@ -16,12 +16,13 @@ nginx:
     volumes_from:
         - app
     environment:
-        DOCUMENT_ROOT: /var/www/app/web
+        DOCUMENT_ROOT: /var/www/web
         INDEX_FILE: app_dev.php
         PHP_FPM_SOCKET: php:9000
 
 php:
-    image: yappabe/php
+    #image: yappabe/php
+    image: sfexperiments/php
     expose:
         - 9000
     volumes_from:
